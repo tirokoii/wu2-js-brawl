@@ -7,6 +7,7 @@ function rollDice() {
     return Math.ceil(Math.random() * 6)
 }
 
+
 console.log(rollDice())
 
 let playerRoll = rollDice()
