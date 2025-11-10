@@ -1,0 +1,54 @@
+body {
+    background-color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(238, 238, 238);
+}
+
+main {
+    margin-inline: auto;
+    width: 100ch;
+}
+
+button {
+    font-size: 1.5rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+    color: rgb(163, 162, 170);
+    background-color: rgb(46, 46, 46);
+    height: 4ch;
+    width: 15ch;
+}
+
+ul {
+    margin-bottom: 10ch;
+    overflow: hidden;
+}
+
+li {
+    list-style: none;
+}
+
+.danger-msg {
+    text-align: center;
+    padding-top: 4ch;
+    font-size: 2rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    top: 0;
+    bottom: 0;
+    margin-block: auto;
+    height: 100px;
+    width: 500px;
+    background-color: rgb(255, 38, 38);
+}
+
+#fight-log {
+    display: flex;
+    flex-direction: column-reverse;
+
+    .attack {
+        color: green;
+    }
+}
