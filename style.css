@@ -47,8 +47,15 @@ li {
 #fight-log {
     display: flex;
     flex-direction: column-reverse;
+    font-weight: 600;
 
     .attack {
         color: green;
+    }
+    .damage {
+        color: red;
+    }
+    .dub {
+        color: blue;
     }
 }

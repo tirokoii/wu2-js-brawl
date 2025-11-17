@@ -12,3 +12,4 @@
 - funky messages (danger/threat)
 - Money (he-he)
 - Classes choice in beninngening
+- Time tracker
