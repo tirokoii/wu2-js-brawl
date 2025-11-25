@@ -4,15 +4,12 @@ let playerRoll = 0
 let playerDice = 6
 let playerMoney = 0
 
-let enemyName = 'none'
-let enemyHP = 10
-let enemyRoll = 0
-let enemyDice = 6
-let enemy_money = [10, 12, 13]
+let enemyMoney = [1, 10, 12, 13]
+let currentEnemy = 0
 
 let last = 0
 let round
-let time_mult = 1
+let time_mult = 0
 let nr = 1
 const dices = [4, 6, 8, 10, 12, 20] 
 
@@ -25,17 +22,21 @@ const playerMoneyDisplay = document.querySelector('#player-money')
 
 const enemyNameDisplay = document.querySelector('#enemy-name')
 const enemyHpDisplay = document.querySelector('#enemy-hp') // # --> id
-
+const enemyImgDisplay = document.querySelector('#enemy-img')
 const fightLogDisplay = document.querySelector('#fight-log')
 const dangerMsgDisplay = document.querySelector('#danger-msg-box')
 const timeTrackerDisplay = document.querySelector('#time')
 
+const enemyList = []
 
 class Enemy {
-    constructor(name, hp, money) {
+    constructor(name, hp, money, dice, roll, src) {
         this.name = name
         this.hp = hp
         this.money = money
+        this.dice = dice
+        this.roll = roll
+        this.src = src
     }
 
     attack(dmg) {
@@ -45,37 +46,36 @@ class Enemy {
             this.name + ' strikes you with their massive stone tablet of commandments with ' + dmg + '!'
         ]
 
-        return rand(msg)
+        return rand(msg, 0)
     }
 }
 
 
 
-const enemies = [
-    {
-        'name': 'Goblin',
-        'hp': 20
-    },
-    {
-        'name': 'Stut',
-        'hp': 10
-    },
-    {
-        'name': 'Caloth',
-        'hp': 40
-    },
-    {
-        'name': 'Parkol',
-        'hp': 25
-    }
-]
+// const enemies = [
+//     {
+//         'name': 'Goblin',
+//         'hp': 20
+//     },
+//     {
+//         'name': 'Stut',
+//         'hp': 10
+//     },
+//     {
+//         'name': 'Caloth',
+//         'hp': 40
+//     },
+//     {
+//         'name': 'Parkol',
+//         'hp': 25
+//     }
+// ]
 
 function rand(li, num) {
     if (li == 0) {
-        Math.floor(Math.random()*num)
+        return Math.floor(Math.random()*num)
     } else if (num == 0) {
-        item = li[Math.floor(Math.random()* li.length)]
-        return item
+        return li[Math.floor(Math.random()* li.length)]
     }
 }
 
@@ -88,17 +88,17 @@ function rollDice(diceType) { // Randomized dice roll
 }
 
 function createEnemy() { // Create an enemy from list with objects in
-    goblin = new Enemy('Goblin', '20', rand(enemy_money, 0))
-    stut = new Enemy('Stut', 10, rand(enemy_money, 0))
-    caloth = new Enemy('Caloth', 40, rand(enemy_money, 0))
-    parkol = new Enemy('Parkol', 25, rand(enemy_money, 0))
-    const enemyList = [goblin, stut, caloth, parkol]
-    i = rand(enemyList.length)
-    enemyName = enemyList[i]
-    console.log(enemyName)
-    enemyDice = dices[i]
-    enemyHP = enemyList[i]
-    enemyNameDisplay.textContent = enemyName
+    Goblin = new Enemy('Goblin', 20, rand(enemyMoney, 0), 0, 0, 'images/goblin.png')
+    Stut = new Enemy('Stut', 10, rand(enemyMoney, 0), 0, 0, 'images/stut.png')
+    Caloth = new Enemy('Caloth', 40, rand(enemyMoney, 0), 0, 0, 'images/goblin.png')
+    Parkol = new Enemy('Parkol', 25, rand(enemyMoney, 0), 0, 0, 'images/goblin.png')
+    enemyList.push(Goblin, Stut, Caloth, Parkol)
+    currentEnemy = rand(enemyList, 0)
+    i = rand(0, dices.length)
+    console.log(currentEnemy.name)
+    currentEnemy.dice = dices[i]
+    enemyNameDisplay.textContent = currentEnemy.name
+    enemyImgDisplay.src = currentEnemy.src
     // i = Math.floor(Math.random()*(dices.length))
     // enemyDice = dices[i]
     // j = Math.floor(Math.random()*(enemies.length))
@@ -107,6 +107,7 @@ function createEnemy() { // Create an enemy from list with objects in
     // console.log(enemies[j]['name'])
     // enemyNameDisplay.textContent = enemyName
 }
+createEnemy()
 
 // function createEnemy() { // Spawn an enemy
 //     i = Math.ceil(Math.random()* (dices.length))
@@ -148,34 +149,38 @@ function dangerMsg(content) { // Display messege for enemy respawn
 //     `Yeah yeah... ${dmg}`
 // ]
 
+
 function turn() { // Each turn of the game
     let playerRoll = rollDice(playerDice) //Preparing for change with upgrades
-    let enemyRoll = rollDice(enemyDice) 
+    currentEnemy.roll = rollDice(currentEnemy.dice) 
 
-    if (playerRoll > enemyRoll) {
-        enemyHP -= playerRoll
-        console.log(`enemy ${enemyHP}`)
+    if (playerRoll > currentEnemy.roll) {
+        currentEnemy.hp -= playerRoll
+        console.log(`enemy ${currentEnemy.hp}`)
         log(` ${playerName} attacks the enemy and deals ${playerRoll} dmg to the enemy`, "attack")
-    } else if (enemyRoll > playerRoll) {
-        playerHP -= enemyRoll
+    } else if (currentEnemy.roll > playerRoll) {
+        playerHP -= currentEnemy.roll
         console.log(`player ${playerHP}`)
-        log(`The enemy attacks and deals ${enemyRoll} dmg to ${playerName}`, "damage")
+        log(currentEnemy.attack(currentEnemy.roll), "damage")
     } else {
-        const dmg = (playerRoll + enemyRoll)/2
+        const dmg = (playerRoll + currentEnemy.roll)/2
         playerHP -= dmg
-        enemyHP -= dmg
-        console.log(`enemy ${enemyHP} player ${playerHP}`, "dub")
+        currentEnemy.hp -= dmg
+        console.log(`enemy ${currentEnemy.hp} player ${playerHP}`, "dub")
         log(`Both take ${dmg} dmg`)
     }
 
-    if (enemyHP < 1) { // Red big message
+    if (currentEnemy.hp < 1) { // Red big message
+        playerMoney += currentEnemy.money
+        playerMoneyDisplay.textContent = playerMoney
+        console.log(playerMoney)
         dangerMsg('Enemy respawn!')
         createEnemy()
     }
     // playerHpDisplay.textContent = playerHP < 1 ? 0 : playerHP (If-statments)
     // enemyHpDisplay.textContent = enemyHP < 1 ? 0 : enemyHP
     playerHpDisplay.textContent = Math.max(0, playerHP)
-    enemyHpDisplay.textContent = Math.max(0, enemyHP)
+    enemyHpDisplay.textContent = Math.max(0, currentEnemy.hp)
 
     if (playerHP < 20) {
         dangerMsg('hp-low')
@@ -184,6 +189,7 @@ function turn() { // Each turn of the game
 }
 
 function gameLoop(timestamp) { // Hmmmmmm......
+    playBtn.disable = true
     if (timestamp >= last + 1000) {
         turn()
         last = timestamp
@@ -195,13 +201,12 @@ function gameLoop(timestamp) { // Hmmmmmm......
     }
 }
 
-function time() {
-    time_mult += 0.01
-    timestamp = new Date().getSeconds()
-    timestamp = (timestamp/timestamp * time_mult).toFixed(1)
-    timeTrackerDisplay.textContent = timestamp
+function time() { 
+    time_mult += 0.015 // Updates it close enough to real time...
+    timestamp = time_mult.toFixed(1)
+    timeTrackerDisplay.textContent = timestamp 
 
-    window.requestAnimationFrame(time)
+    window.requestAnimationFrame(time) //updates the timer
 }
 
 time()
@@ -213,7 +218,8 @@ function stop() {
 
 playerNameDisplay.textContent = playerName
 playerHpDisplay.textContent = playerHP
-enemyHpDisplay.textContent = enemyHP
+enemyHpDisplay.textContent = currentEnemy.hp
 
 playBtn.addEventListener('click', gameLoop) // Click click
 stopBtn.addEventListener('click', stop) // Clock clock
+
