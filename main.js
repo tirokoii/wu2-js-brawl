@@ -90,8 +90,8 @@ function rollDice(diceType) { // Randomized dice roll
 function createEnemy() { // Create an enemy from list with objects in
     Goblin = new Enemy('Goblin', 20, rand(enemyMoney, 0), 0, 0, 'images/goblin.png')
     Stut = new Enemy('Stut', 10, rand(enemyMoney, 0), 0, 0, 'images/stut.png')
-    Caloth = new Enemy('Caloth', 40, rand(enemyMoney, 0), 0, 0, 'images/goblin.png')
-    Parkol = new Enemy('Parkol', 25, rand(enemyMoney, 0), 0, 0, 'images/goblin.png')
+    Caloth = new Enemy('Caloth', 40, rand(enemyMoney, 0), 0, 0, 'images/caloth.png')
+    Parkol = new Enemy('Parkol', 25, rand(enemyMoney, 0), 0, 0, 'images/parkol.png')
     enemyList.push(Goblin, Stut, Caloth, Parkol)
     currentEnemy = rand(enemyList, 0)
     i = rand(0, dices.length)
