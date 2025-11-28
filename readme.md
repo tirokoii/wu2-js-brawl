@@ -9,34 +9,34 @@ Min förmåga att planera är fortfarande krasslig och klasser finner fortfarand
 
 
 
-# We are coding javascript
+# Vi kodar javascript
 
-## What do I wanna do?
-- Have fun (duhh)
+## Vad will jag göra
+- Ha kul
 
 ### Jens stuff
-- Cool radomized messages (for enemy (check))
-- Color (check)
+- Coola radomiserade messages (för fie (check))
+- Färger på texterna (check)
 
 ### My stuff
-- Enemy respawn (check)
-- funky messages (danger/threat)
-- Money (he-he) (cleared)
-- Classes choice in beninngening? (if time)
-- store (if time)
-- Time tracker (check)
-- enemy images (check)
+- Fie respawn (check)
+- funky message (check)
+- Money-money-money (he-he) (cleared)
+- Classes choice i beninngening? (if time)
+- Store (if time)
+- Time wasted (check)
+- Enemy bilder (check)
 
 
 #### Store contents and concept
 
-You get a full store in the beginning of 4 randomized items, after buying a item it'll take effect directly and will disappear from the store. After each enemy battle if the store is not full an item will replace the bought item.
+Du får ett fullt store i beninngening av 4 randomiserade items, efter att ha köpt ett item så kommer den ta effekt direkt och försvinner från store. Efter varje fight med en fie så kommer de tomma slotsen att fyllas med nya items.
 
-Banana peel - permenent slip (randomly skips an Enemies)
-Axe -  +2 damage for 5 rounds
-Magical book - 50% chance you get bonus, 50% chance you get a curse
+Banana peel - permanent slip (randomly skippar an Enemies)
+Axe -  +2 damage för 5 runder
+Magical book - 50% chans bonus, 50% chans curse
 Space suit - Dodge?
-Sword - +1 damage for 10 rounds
-Drome - +15 damage for 2 rounds
+Sword - +1 damage för 10 rundor
+Drome - +15 damage för 2 rundor
 
 
