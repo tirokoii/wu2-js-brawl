@@ -32,7 +32,7 @@ Min förmåga att planera är fortfarande krasslig och klasser finner fortfarand
 
 Du får ett fullt store i beninngening av 4 randomiserade items, efter att ha köpt ett item så kommer den ta effekt direkt och försvinner från store. Efter varje fight med en fie så kommer de tomma slotsen att fyllas med nya items.
 
-Banana peel - permanent slip (randomly skippar an Enemies)
+Banana peel - permanent slip (randomly skippar en fie)
 Axe -  +2 damage för 5 runder
 Magical book - 50% chans bonus, 50% chans curse
 Space suit - Dodge?
